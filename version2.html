@@ -23,6 +23,7 @@
       font-family: 'Inter', sans-serif;
       overflow-x: hidden;
       position: relative;
+      scroll-behavior: smooth; /* <== scroll doux natif */
     }
 
     /* === LOGO DE FOND NÉON (version adoucie) === */
@@ -48,23 +49,11 @@
     }
 
     @keyframes breathe {
-      0%,100% {
-        text-shadow:
-          0 0 60px rgba(25,179,255,0.25),
-          0 0 120px rgba(25,179,255,0.2),
-          0 0 200px rgba(25,179,255,0.15);
-        opacity: 0.22;
-      }
-      50% {
-        text-shadow:
-          0 0 90px rgba(25,179,255,0.35),
-          0 0 180px rgba(25,179,255,0.25),
-          0 0 280px rgba(25,179,255,0.2);
-        opacity: 0.3;
-      }
+      0%,100% { opacity: 0.22; }
+      50% { opacity: 0.3; }
     }
 
-    /* Floating widget */
+    /* === WIDGET LATÉRAL ARRONDI === */
     .widget-panel {
       position: fixed;
       top: 50%;
@@ -74,6 +63,18 @@
       flex-direction: column;
       align-items: center;
       z-index: 50;
+      background: rgba(25,179,255,0.05);
+      border-radius: 50px;
+      padding: 18px 12px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 0 40px rgba(25,179,255,0.08);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.4s ease;
+    }
+
+    .widget-panel:hover {
+      background: rgba(25,179,255,0.08);
+      box-shadow: 0 0 60px rgba(25,179,255,0.15);
     }
 
     .logo-container {
@@ -81,7 +82,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .logo-text {
@@ -101,14 +102,12 @@
       0%, 100% {
         text-shadow:
           0 0 10px rgba(25,179,255,0.6),
-          0 0 20px rgba(25,179,255,0.4),
-          0 0 40px rgba(25,179,255,0.3);
+          0 0 20px rgba(25,179,255,0.4);
       }
       50% {
         text-shadow:
-          0 0 20px rgba(25,179,255,0.8),
-          0 0 40px rgba(25,179,255,0.6),
-          0 0 60px rgba(25,179,255,0.4);
+          0 0 25px rgba(25,179,255,0.8),
+          0 0 50px rgba(25,179,255,0.5);
       }
     }
 
@@ -116,22 +115,8 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      background: rgba(25,179,255,0.04);
-      backdrop-filter: blur(14px);
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.06);
-      box-shadow: 0 0 30px rgba(25,179,255,0.08);
-      padding: 8px 0;
-      overflow: hidden;
-      width: 0;
-      opacity: 0;
-      transition: all 0.6s ease;
-    }
-
-    .widget-panel:hover .nav-widget {
-      width: 180px;
-      opacity: 1;
-      padding: 12px 10px;
+      gap: 8px;
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
 
     .nav-widget a {
@@ -141,15 +126,15 @@
       font-weight: 600;
       opacity: 0.8;
       padding: 10px 14px;
-      border-radius: 10px;
+      border-radius: 25px;
       transition: background 0.3s, opacity 0.3s, transform 0.3s;
       white-space: nowrap;
     }
 
     .nav-widget a:hover {
-      background: rgba(25,179,255,0.1);
+      background: rgba(25,179,255,0.15);
       opacity: 1;
-      transform: translateX(5px);
+      transform: translateX(4px);
     }
 
     section {
@@ -195,7 +180,7 @@
       box-shadow: 0 10px 30px rgba(25,179,255,.25);
     }
 
-    /* === Bandeau logos clients === */
+    /* Bandeau logos clients */
     .clients-slider {
       width: 100%;
       overflow: hidden;
@@ -227,7 +212,7 @@
       transform: scale(1.1);
     }
 
-    /* Partenaires & footer */
+    /* Partenaires */
     .partners {
       display: flex;
       gap: 30px;
@@ -269,14 +254,6 @@
       backdrop-filter: blur(12px);
     }
 
-    .widget h3 {
-      font-size: 2rem;
-      margin: 0 0 18px;
-      background: linear-gradient(90deg, var(--neon-blue), #fff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
     footer {
       text-align: center;
       padding: 40px 20px;
@@ -287,6 +264,7 @@
     .reveal { opacity: 0; transform: translateY(20px) scale(.98); filter: blur(4px); transition: opacity .9s ease, transform .9s ease, filter .9s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
   </style>
+
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -294,6 +272,7 @@
   <!-- LOGO BLEU NÉON CENTRÉ -->
   <div class="bg-logo">AVA2i</div>
 
+  <!-- WIDGET LATÉRAL ARRONDI -->
   <div class="widget-panel">
     <div class="logo-container">
       <span class="logo-text">AVA2i</span>
@@ -308,11 +287,11 @@
   <main>
     <section class="hero" id="vision">
       <h2 class="reveal">Imaginer la donnée autrement</h2>
-      <p class="reveal" style="transition-delay:.12s">AVA2i conçoit des expériences de données où la technologie devient art : architectures nuancées, IA poétique, cloud conscient.</p>
-      <button class="btn-primary reveal" style="transition-delay:.24s">Explorer</button>
+      <p class="reveal">AVA2i conçoit des expériences de données où la technologie devient art : architectures nuancées, IA poétique, cloud conscient.</p>
+      <button class="btn-primary reveal">Explorer</button>
 
-      <!-- === Bandeau Clients === -->
-      <div class="clients-slider reveal" style="transition-delay:.4s">
+      <!-- Logos clients -->
+      <div class="clients-slider reveal">
         <div class="clients-track">
           <img src="img/CA.png" alt="Crédit Agricole">
           <img src="img/BPCE.png" alt="BPCE">
@@ -324,8 +303,6 @@
           <img src="img/Generali.png" alt="Generali">
           <img src="img/Accor.png" alt="Accor">
           <img src="img/SFR.png" alt="SFR">
-
-          <!-- Double for continuous scroll -->
           <img src="img/CA.png" alt="">
           <img src="img/BPCE.png" alt="">
           <img src="img/BNP.png" alt="">
@@ -341,11 +318,11 @@
     </section>
 
     <section id="partenaires">
-      <h3 class="reveal" style="font-size:2rem; margin-bottom:6px; background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent">Nos Partenaires</h3>
-      <p class="reveal" style="color:var(--muted); transition-delay:.1s">Des collaborations emblématiques de l’innovation Cloud & Data.</p>
+      <h3 class="reveal" style="font-size:2rem; background:linear-gradient(90deg, var(--neon-blue), var(--neon-pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Nos Partenaires</h3>
+      <p class="reveal" style="color:var(--muted);">Des collaborations emblématiques de l’innovation Cloud & Data.</p>
       <div class="partners">
-        <div class="partner-card reveal" style="transition-delay:.15s">Snowflake</div>
-        <div class="partner-card reveal" style="transition-delay:.22s">Databricks</div>
+        <div class="partner-card reveal">Snowflake</div>
+        <div class="partner-card reveal">Databricks</div>
       </div>
     </section>
 
@@ -362,6 +339,7 @@
   </main>
 
   <script>
+    // Animation d'apparition douce
     const observer = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
         if(entry.isIntersecting){ entry.target.classList.add('visible'); }
@@ -369,13 +347,6 @@
     }, { threshold: 0.18 });
 
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-      });
-    });
   </script>
 </body>
 </html>
