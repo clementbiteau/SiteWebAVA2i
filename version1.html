@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVA2i • Ingénierie & Innovation</title>
+  <style>
+    :root{
+      --neon-1:#19b3ff;
+      --neon-2:#ff6f91;
+      --neon-3:#68d4ff;
+      --ink:#0a0b10;
+      --text:#eaf2ff;
+      --muted:#9fb2cc;
+    }
+    html, body { margin:0; padding:0; background: radial-gradient(1000px 400px at 10% -10%, rgba(25,179,255,.12), transparent 40%), radial-gradient(1200px 500px at 90% -20%, rgba(255,111,145,.10), transparent 40%), var(--ink); color: var(--text); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif; overflow-x:hidden; }
+
+    /* Header — neon gradient animated */
+    header{ position:fixed; top:0; width:100%; padding:18px 60px; display:flex; justify-content:space-between; align-items:center; z-index:20; backdrop-filter: blur(14px); border-bottom:1px solid rgba(255,255,255,.08); background: linear-gradient(120deg, rgba(25,179,255,.35), rgba(255,111,145,.35), rgba(25,179,255,.35)); background-size:300% 300%; animation: headerGlow 12s ease-in-out infinite; box-shadow: 0 8px 40px rgba(25,179,255,.25); }
+    @keyframes headerGlow{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    .logo span{ font-size:1.5rem; letter-spacing:1.3px; font-weight:800; text-transform:uppercase; background: linear-gradient(90deg, var(--neon-3), #fff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 14px rgba(25,179,255,.55); }
+    nav a{ margin-left:22px; color:#e6f0ff; text-decoration:none; font-weight:600; opacity:.9; transition:opacity .25s, transform .25s } nav a:hover{ opacity:1; transform:translateY(-2px) }
+
+    /* Sections */
+    section{ min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:110px 20px 80px; position:relative; overflow:hidden }
+
+    /* Hero with neon haze */
+    .hero{ background: radial-gradient(circle at 70% 20%, rgba(25,179,255,.12), transparent 60%); }
+    .hero h2{ font-size:3.6rem; line-height:1.05; margin:0 0 14px; background: linear-gradient(135deg, #bfe6ff, #ffffff); -webkit-background-clip:text; -webkit-text-fill-color:transparent }
+    .hero p{ max-width:720px; color: var(--muted); font-size:1.12rem }
+    .btn-primary{ margin-top:36px; background: linear-gradient(135deg, #4f9dff, var(--neon-1)); color:#001018; padding:14px 40px; border:none; border-radius:40px; font-weight:700; cursor:pointer; transition: transform .35s, box-shadow .35s } .btn-primary:hover{ transform:translateY(-4px); box-shadow:0 10px 30px rgba(25,179,255,.35) }
+
+    /* Partners — neon selectable cards (no images) */
+    .partners{ display:flex; gap:40px; flex-wrap:wrap; justify-content:center; align-items:center; margin-top:40px }
+    .partner-card{ --glow: rgba(25,179,255,.35); min-width:240px; padding:28px 30px; border-radius:18px; background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); box-shadow: inset 0 0 40px rgba(255,255,255,.03), 0 0 0 0 var(--glow); color:#dff1ff; font-weight:800; letter-spacing:.6px; text-transform:uppercase; position:relative; overflow:hidden; transform: translateZ(0); transition: transform .45s ease, box-shadow .45s ease, border-color .45s ease }
+    .partner-card::before{ content:""; position:absolute; inset:-120%; background: conic-gradient(from 0deg, transparent, rgba(25,179,255,.15), transparent 30%); animation: spin 10s linear infinite }
+    @keyframes spin{ from{ transform: rotate(0deg) } to{ transform: rotate(360deg) } }
+    .partner-card span{ position:relative; z-index:1; font-size:1.1rem; }
+    .partner-card:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 15px 50px rgba(25,179,255,.25); border-color: rgba(25,179,255,.5) }
+    .snow{ --glow: rgba(104,212,255,.35) }
+    .dbx{ --glow: rgba(255,111,145,.35) }
+
+    /* Reveal on scroll */
+    .reveal{ opacity:0; transform: translateY(26px) scale(.98); filter: blur(4px); transition: opacity .9s ease, transform .9s ease, filter .9s ease }
+    .reveal.visible{ opacity:1; transform: translateY(0) scale(1); filter: blur(0) }
+
+    /* Contact widget */
+    .widget{ display:flex; flex-direction:column; align-items:center; justify-content:center; background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03)); border:1px solid rgba(255,255,255,.08); border-radius:24px; padding:80px 40px; max-width:720px; box-shadow: 0 10px 40px rgba(25,179,255,.10); backdrop-filter: blur(12px) }
+    .widget h3{ font-size:2.2rem; margin:0 0 20px; background: linear-gradient(90deg, var(--neon-3), #fff); -webkit-background-clip:text; -webkit-text-fill-color:transparent }
+
+    footer{ text-align:center; padding:60px 20px; color:#8aa4c3; border-top:1px solid rgba(255,255,255,.06) }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span>AVA2i</span></div>
+    <nav>
+      <a href="#vision">Vision</a>
+      <a href="#partenaires">Partenaires</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="vision">
+    <h2 class="reveal">Imaginer la donnée autrement</h2>
+    <p class="reveal" style="transition-delay:.12s">AVA2i conçoit des expériences de données où la technologie devient art : architectures nuancées, IA poétique, cloud conscient.</p>
+    <button class="btn-primary reveal" style="transition-delay:.24s">Explorer</button>
+  </section>
+
+  <section id="partenaires">
+    <h3 class="reveal" style="font-size:2.2rem; margin-bottom:8px; background: linear-gradient(90deg, var(--neon-1), var(--neon-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent">Nos Partenaires</h3>
+    <p class="reveal" style="color:var(--muted); transition-delay:.1s">Des collaborations emblématiques de l’innovation Cloud & Data.</p>
+    <div class="partners">
+      <div class="partner-card snow reveal" style="transition-delay:.15s"><span>Snowflake</span></div>
+      <div class="partner-card dbx reveal" style="transition-delay:.22s"><span>Databricks</span></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="widget reveal">
+      <h3>Vos ambitions commencent ici</h3>
+      <button class="btn-primary">Nous écrire</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 — AVA2i • Ingénierie & Innovation</p>
+  </footer>
+
+  <script>
+    // Intersection Observer for reveal-on-scroll
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); }
+      });
+    }, { threshold: 0.18 });
+
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
