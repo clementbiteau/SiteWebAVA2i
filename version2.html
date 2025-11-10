@@ -195,6 +195,39 @@
       box-shadow: 0 10px 30px rgba(25,179,255,.25);
     }
 
+    /* === Bandeau logos clients === */
+    .clients-slider {
+      width: 100%;
+      overflow: hidden;
+      margin: 80px 0;
+      position: relative;
+    }
+
+    .clients-track {
+      display: flex;
+      gap: 60px;
+      width: max-content;
+      animation: scrollClients 45s linear infinite;
+    }
+
+    @keyframes scrollClients {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .clients-track img {
+      height: 60px;
+      filter: brightness(1.2) drop-shadow(0 0 8px rgba(25,179,255,0.35));
+      opacity: 0.85;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .clients-track img:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* Partenaires & footer */
     .partners {
       display: flex;
       gap: 30px;
@@ -277,6 +310,34 @@
       <h2 class="reveal">Imaginer la donnée autrement</h2>
       <p class="reveal" style="transition-delay:.12s">AVA2i conçoit des expériences de données où la technologie devient art : architectures nuancées, IA poétique, cloud conscient.</p>
       <button class="btn-primary reveal" style="transition-delay:.24s">Explorer</button>
+
+      <!-- === Bandeau Clients === -->
+      <div class="clients-slider reveal" style="transition-delay:.4s">
+        <div class="clients-track">
+          <img src="img/CA.png" alt="Crédit Agricole">
+          <img src="img/BPCE.png" alt="BPCE">
+          <img src="img/BNP.png" alt="BNP Paribas">
+          <img src="img/SG.png" alt="Société Générale">
+          <img src="img/AXA.png" alt="AXA">
+          <img src="img/Dalkia.png" alt="Dalkia">
+          <img src="img/Natixis.png" alt="Natixis">
+          <img src="img/Generali.png" alt="Generali">
+          <img src="img/Accor.png" alt="Accor">
+          <img src="img/SFR.png" alt="SFR">
+
+          <!-- Double for continuous scroll -->
+          <img src="img/CA.png" alt="">
+          <img src="img/BPCE.png" alt="">
+          <img src="img/BNP.png" alt="">
+          <img src="img/SG.png" alt="">
+          <img src="img/AXA.png" alt="">
+          <img src="img/Dalkia.png" alt="">
+          <img src="img/Natixis.png" alt="">
+          <img src="img/Generali.png" alt="">
+          <img src="img/Accor.png" alt="">
+          <img src="img/SFR.png" alt="">
+        </div>
+      </div>
     </section>
 
     <section id="partenaires">
