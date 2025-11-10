@@ -11,6 +11,7 @@
       --bg: #05070a;
       --text: #eaf2ff;
       --muted: #9fb2cc;
+      --neon-3: #19b3ff;
     }
 
     html, body {
@@ -34,22 +35,24 @@
       align-items: center;
       z-index: 9999;
       opacity: 0;
-      animation: fadeInOut 3s ease-in-out forwards;
+      animation: fadeInOut 2s ease-in-out forwards;
     }
 
     .intro-screen img {
-      width: 200px;
+      width: 300px;
       height: auto;
       margin-bottom: 25px;
     }
 
     .intro-screen span {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2.3rem;
+      font-size: 3rem;
+      letter-spacing: 1.3px;
       font-weight: 800;
-      color: var(--neon-blue);
-      letter-spacing: 2px;
-      text-shadow: 0 0 20px rgba(25,179,255,0.7);
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--neon-3), #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 14px rgba(25,179,255,.55);
       animation: pulseText 3s ease-in-out infinite;
     }
 
@@ -60,28 +63,44 @@
       100% { opacity: 0; visibility: hidden; }
     }
 
-    @keyframes pulseLogo {
-      0%,100% { filter: drop-shadow(0 0 20px rgba(25,179,255,0.8)); transform: scale(1); }
-      50% { filter: drop-shadow(0 0 45px rgba(25,179,255,1)); transform: scale(1.04); }
-    }
-
     @keyframes pulseText {
-      0%,100% { text-shadow: 0 0 20px rgba(25,179,255,0.6); }
-      50% { text-shadow: 0 0 40px rgba(25,179,255,0.9); }
+      0%,100% { text-shadow: 0 0 14px rgba(25,179,255,.55); }
+      50% { text-shadow: 0 0 28px rgba(25,179,255,.9); }
     }
 
     body:not(.ready) main, 
     body:not(.ready) .widget-panel, 
-    body:not(.ready) .bg-logo {
+    body:not(.ready) .bg-logo,
+    body:not(.ready) .logo-fixed {
       opacity: 0;
       pointer-events: none;
     }
 
     body.ready main,
     body.ready .widget-panel,
-    body.ready .bg-logo {
+    body.ready .bg-logo,
+    body.ready .logo-fixed {
       opacity: 1;
       transition: opacity 1.2s ease-in;
+    }
+
+    /* === FIXED LOGO TOP-LEFT === */
+    .logo-fixed {
+      position: fixed;
+      top: 20px;
+      left: 25px;
+      z-index: 999;
+      cursor: pointer;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .logo-fixed img {
+      width: 80px;
+      height: auto;
+    }
+
+    .logo-fixed:hover {
+      transform: scale(1.05);
     }
 
     /* === LOGO DE FOND === */
@@ -142,28 +161,17 @@
       margin-bottom: 15px;
     }
 
+    /* === UPDATED AVA2i TEXT STYLE === */
     .logo-text {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 24px;
+      font-size: 1.5rem;
+      letter-spacing: 1.3px;
       font-weight: 800;
-      color: var(--neon-blue);
-      letter-spacing: 1px;
-      text-shadow:
-        0 0 10px rgba(25,179,255,0.6),
-        0 0 20px rgba(25,179,255,0.4),
-        0 0 40px rgba(25,179,255,0.3);
-      animation: pulseNeon 6s ease-in-out infinite;
-    }
-
-    @keyframes pulseNeon {
-      0%, 100% {
-        text-shadow: 0 0 10px rgba(25,179,255,0.6),
-                     0 0 20px rgba(25,179,255,0.4);
-      }
-      50% {
-        text-shadow: 0 0 25px rgba(25,179,255,0.8),
-                     0 0 50px rgba(25,179,255,0.5);
-      }
+      text-transform: uppercase;
+      background: linear-gradient(90deg, var(--neon-3), #fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 14px rgba(25,179,255,.55);
+      animation: pulseText 4s ease-in-out infinite;
     }
 
     .nav-widget {
@@ -234,6 +242,7 @@
       box-shadow: 0 10px 30px rgba(25,179,255,.25);
     }
 
+    /* === CLIENT LOGO SLIDER === */
     .clients-slider {
       width: 100%;
       overflow: hidden;
@@ -265,6 +274,62 @@
       transform: scale(1.1);
     }
 
+    /* === PARTNERS ANIMATION === */
+    .partners {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .partner-card {
+      --glow: rgba(25,179,255,.35);
+      min-width: 240px;
+      padding: 28px 30px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: inset 0 0 40px rgba(255,255,255,.03), 0 0 0 0 var(--glow);
+      color: #dff1ff;
+      font-weight: 800;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+      transition: transform .45s ease, box-shadow .45s ease, border-color .45s ease;
+    }
+
+    .partner-card::before {
+      content: "";
+      position: absolute;
+      inset: -120%;
+      background: conic-gradient(from 0deg, transparent, rgba(25,179,255,.15), transparent 30%);
+      animation: spin 10s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .partner-card span {
+      position: relative;
+      z-index: 1;
+      font-size: 1.1rem;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 15px 50px rgba(25,179,255,.25);
+      border-color: rgba(25,179,255,.5);
+    }
+
+    .snow { --glow: rgba(104,212,255,.35); }
+    .dbx { --glow: rgba(255,111,145,.35); }
+
     footer {
       text-align: center;
       padding: 40px 20px;
@@ -283,6 +348,11 @@
   <div class="intro-screen">
     <img src="img/ava2ilogoneon.png" alt="AVA2i Logo">
     <span>AVA2i</span>
+  </div>
+
+  <!-- FIXED LOGO TOP LEFT -->
+  <div class="logo-fixed" onclick="location.reload()">
+    <img src="img/ava2ilogoneon.png" alt="AVA2i">
   </div>
 
   <!-- LOGO DE FOND -->
@@ -306,6 +376,7 @@
       <p class="reveal">AVA2i conçoit des expériences de données où la technologie devient art : architectures nuancées, IA poétique, cloud conscient.</p>
       <button class="btn-primary reveal">Explorer</button>
 
+      <!-- === CLIENTS SCROLL === -->
       <div class="clients-slider reveal">
         <div class="clients-track">
           <img src="img/CA.png" alt="Crédit Agricole">
@@ -318,6 +389,17 @@
           <img src="img/Generali.png" alt="Generali">
           <img src="img/Accor.png" alt="Accor">
           <img src="img/SFR.png" alt="SFR">
+          <!-- duplicate for seamless scroll -->
+          <img src="img/CA.png" alt="">
+          <img src="img/BPCE.png" alt="">
+          <img src="img/BNP.png" alt="">
+          <img src="img/SG.png" alt="">
+          <img src="img/AXA.png" alt="">
+          <img src="img/Dalkia.png" alt="">
+          <img src="img/Natixis.png" alt="">
+          <img src="img/Generali.png" alt="">
+          <img src="img/Accor.png" alt="">
+          <img src="img/SFR.png" alt="">
         </div>
       </div>
     </section>
@@ -326,8 +408,8 @@
       <h3 class="reveal" style="font-size:2rem; background:linear-gradient(90deg, var(--neon-blue), var(--neon-pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Nos Partenaires</h3>
       <p class="reveal" style="color:var(--muted);">Des collaborations emblématiques de l’innovation Cloud & Data.</p>
       <div class="partners">
-        <div class="partner-card reveal">Snowflake</div>
-        <div class="partner-card reveal">Databricks</div>
+        <div class="partner-card snow reveal"><span>Snowflake</span></div>
+        <div class="partner-card dbx reveal"><span>Databricks</span></div>
       </div>
     </section>
 
@@ -346,7 +428,7 @@
   <script>
     // Wait for splash to end before showing main content
     window.addEventListener('load', () => {
-      setTimeout(() => document.body.classList.add('ready'), 1000);
+      setTimeout(() => document.body.classList.add('ready'), 2000);
     });
 
     // Scroll reveal
