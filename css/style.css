@@ -116,7 +116,7 @@ document.addEventListener('mousemove', e => {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background: url('../img/ava2ilogoneon.png') no-repeat center;
+  background: url('../img/logoava2ifinal.png') no-repeat center;
   background-size: min(56vw, 520px);
   opacity: .05;
   filter: drop-shadow(0 0 24px rgba(104,212,255,.25));
@@ -307,7 +307,7 @@ document.addEventListener('mousemove', e => {
 /* Watermark */
 .watermark{
   position:fixed; inset:0; pointer-events:none; z-index:0;
-  background:url('../img/ava2ilogoneon.png') no-repeat center;
+  background:url('../img/logoava2ifinal.png') no-repeat center;
   background-size:min(56vw,520px);
   opacity:.05;
   filter: drop-shadow(0 0 24px rgba(104,212,255,.25));
@@ -528,7 +528,7 @@ body.ready .logo-fixed {
   width: 70vw;
   max-width: 1000px;
   transform: translate(-50%, -50%) scale(1.05);
-  background: url('img/ava2ilogoneon.png') no-repeat center center;
+  background: url('img/logoava2ifinal.png') no-repeat center center;
   background-size: contain;
   opacity: 0.18;
   filter: blur(30px) brightness(1.6) drop-shadow(0 0 60px rgba(25,179,255,0.6));
@@ -561,19 +561,26 @@ body.ready .logo-fixed {
   flex-direction: column;
   align-items: center;
   z-index: 50;
-  background: rgba(25,179,255,0.05);
-  border-radius: 50px;
-  padding: 18px 12px;
-  backdrop-filter: blur(18px);
-  box-shadow: 0 0 40px rgba(25,179,255,0.08);
-  border: 1px solid rgba(255,255,255,0.05);
-  transition: all 0.4s ease;
+
+  background: rgba(25,179,255,0.10);           /* brighter base glow */
+  border-radius: 60px;                         /* smoother curve */
+  padding: 32px 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 0 60px rgba(25,179,255,0.20),            /* outer glow */
+    inset 0 0 20px rgba(25,179,255,0.10);      /* soft inner light */
+  border: 1px solid rgba(255,255,255,0.10);    /* slightly stronger edge */
+  transition: all 0.5s ease;
 }
 
 .widget-panel:hover {
-  background: rgba(25,179,255,0.08);
-  box-shadow: 0 0 60px rgba(25,179,255,0.15);
+  background: rgba(25,179,255,0.16);           /* brighter on hover */
+  box-shadow:
+    0 0 80px rgba(25,179,255,0.25),
+    inset 0 0 30px rgba(25,179,255,0.12);
 }
+
 
 .logo-container {
   display: flex;

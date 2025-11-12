@@ -10,13 +10,13 @@
 <body>
   <!-- SPLASH SCREEN -->
   <div class="intro-screen">
-    <img src="img/ava2ilogoneon.png" alt="AVA2i Logo">
+    <img src="img/logoava2ifinal.png" alt="AVA2i Logo">
     <span>AVA2i</span>
   </div>
 
   <!-- FIXED LOGO TOP LEFT -->
   <div class="logo-fixed" onclick="location.reload()">
-    <img src="img/ava2ilogoneon.png" alt="AVA2i">
+    <img src="img/logoava2ifinal.png" alt="AVA2i">
   </div>
 
   <!-- LOGO DE FOND -->
@@ -25,7 +25,6 @@
   <!-- WIDGET LATÉRAL -->
   <div class="widget-panel">
     <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-
       <span class="logo-text">AVA2i</span>
     </div>
     <div class="nav-widget">
@@ -166,6 +165,29 @@
     track.innerHTML += track.innerHTML;
     }
 
+      // Smooth scroll to top when clicking the AVA2i logo text in widget
+    const logoText = document.querySelector('.widget-panel .logo-text');
+    if (logoText) {
+        logoText.addEventListener('click', (e) => {
+        e.preventDefault();
+        const startY = window.scrollY;
+        const DURATION = 2000;
+        const start = performance.now();
+
+        const easeInOutCubic = t => t < 0.5
+            ? 4 * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+        function step(now) {
+            const progress = Math.min((now - start) / DURATION, 1);
+            const eased = easeInOutCubic(progress);
+            window.scrollTo(0, startY * (1 - eased));
+            if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+        });
+    }
   </script>
 </body>
 </html>
