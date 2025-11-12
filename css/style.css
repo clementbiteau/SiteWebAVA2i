@@ -1030,3 +1030,25 @@ footer {
   }
 }
 
+/* === Fix text visibility on secondary pages (like explorepage.html) === */
+main, section, .hero, .section {
+  position: relative;
+  z-index: 2;
+}
+
+.section p, 
+.section h1, 
+.section h2, 
+.section h3, 
+.section span, 
+.hero p, 
+.hero h1, 
+.hero span {
+  color: var(--text);
+  z-index: 3;
+}
+
+.watermark {
+  z-index: 0 !important;
+  opacity: 0.05 !important;
+}

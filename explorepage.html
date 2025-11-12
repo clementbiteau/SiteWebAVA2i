@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorer • AVA2i — Ingénierie & Innovation</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="ready">
+<body>
+  <div class="logo-fixed" onclick="window.location.href='homepage.html'">
+    <img src="img/ava2ilogoneon.png" alt="AVA2i">
+  </div>
+
+  <div class="watermark" aria-hidden="true"></div>
+
+  <main>
+    <section class="hero" style="min-height:90vh;">
+      <h1 class="headline">Explorer <span>l’Excellence</span> Data, IA & Cloud</h1>
+      <h3 class="sub">L’ingénierie souveraine au service de l’innovation, de la confiance et de la performance.</h3>
+    </section>
+
+    <!-- === CHAPITRE 1 === -->
+    <section class="section reveal">
+      <h2 class="tricolor-text" style="font-size:2rem;">Notre ADN : l’Ingénierie des Données</h2>
+      <h3 style="max-width:800px; margin:auto; line-height:1.8; color:var(--muted);">
+        Chez <strong>AVA2i</strong>, la donnée n’est pas un simple actif : c’est un langage, une matière vivante qui relie les métiers, la technologie et la stratégie.  
+        Nous concevons des <strong>architectures souveraines</strong> et scalables, capables d’évoluer dans des environnements multicloud exigeants, tout en respectant les normes les plus strictes de sécurité et de conformité (RGPD, ISO 27001).  
+        De la gouvernance à la valorisation, nous accompagnons nos clients dans chaque étape de leur transformation data.
+      </h3>
+    </section>
+
+    <!-- === CHAPITRE 2 === -->
+    <section class="section reveal">
+      <h2 class="tricolor-text" style="font-size:2rem;">Intelligence Artificielle Responsable</h2>
+      <h3 style="max-width:800px; margin:auto; line-height:1.8; color:var(--muted);">
+        Nos experts en <strong>IA appliquée</strong> conçoivent des modèles explicables, éthiques et performants.  
+        Qu’il s’agisse de machine learning prédictif, d’analyse de comportements ou d’optimisation opérationnelle,  
+        nous plaçons la transparence et la robustesse au cœur de nos développements.  
+        L’IA n’a de valeur que lorsqu’elle renforce la décision humaine : c’est cette conviction qui guide nos projets.
+      </h3>
+    </section>
+
+    <!-- === CHAPITRE 3 === -->
+    <section class="section reveal">
+      <h2 class="tricolor-text" style="font-size:2rem;">Cloud : Agilité et Souveraineté</h2>
+      <h3 style="max-width:800px; margin:auto; line-height:1.8; color:var(--muted);">
+        Nous maîtrisons les écosystèmes <strong>multi-cloud et hybrides</strong> (Snowflake, Databricks, AWS, Azure, GCP)  
+        avec une approche centrée sur la <strong>sécurité, la portabilité et la résilience</strong>.  
+        AVA2i défend une vision du cloud qui combine performance technologique et souveraineté des données,  
+        pour offrir aux entreprises françaises et européennes la liberté d’innover sans dépendance.
+      </h3>
+    </section>
+
+    <!-- === CHAPITRE 4 === -->
+    <section class="section reveal">
+      <h2 class="tricolor-text" style="font-size:2rem;">AVA2i : Partenaire FinTech & Innovation</h2>
+      <h3 style="max-width:800px; margin:auto; line-height:1.8; color:var(--muted);">
+        Acteur reconnu dans le monde de la <strong>finance et de la banque</strong>,  
+        AVA2i accompagne les plus grands groupes dans leurs projets de modernisation technologique :  
+        plateformes de données temps réel, automatisation des reportings réglementaires,  
+        IA pour la détection de fraudes, scoring intelligent et pilotage de la performance.  
+        Nous créons des architectures robustes et auditées, où la confiance et la précision sont non-négociables.
+      </h3>
+    </section>
+
+    <!-- === CHAPITRE 5 === -->
+    <section class="section reveal">
+      <h2 class="tricolor-text" style="font-size:2rem;">Construire Ensemble les Solutions de Demain</h2>
+      <h3 style="max-width:800px; margin:auto; line-height:1.8; color:var(--muted);">
+        Être partenaire d’AVA2i, c’est s’allier à une équipe qui marie <strong>l’excellence technique</strong>,  
+        la <strong>rigueur opérationnelle</strong> et une <strong>vision stratégique</strong> du cloud et de la donnée.  
+        Ensemble, nous bâtissons des solutions durables, sécurisées et souveraines,  
+        au croisement de la technologie et de l’humain.
+      </h3>
+      <div class="contact-item">
+        <strong>Partner Lead</strong><br>
+        <a href="mailto:clement.biteau@ava2i.com">clement.biteau@ava2i.com</a><br><br>
+        </div>
+    </section>
+
+    <footer>
+      <p>© 2025 — AVA2i • Ingénierie & Innovation</p>
+    </footer>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.18 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
