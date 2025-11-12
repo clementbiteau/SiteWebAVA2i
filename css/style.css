@@ -759,6 +759,7 @@ section {
   align-items: center;
   padding: 40px 0 60px;
   overflow: hidden;
+  gap: 40px;
   position: relative;
 }
 
@@ -976,4 +977,56 @@ footer {
 #contact.visible::before {
   animation: glowFloat 20s ease-in-out infinite;
 }
- 
+
+.contact-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 80px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.contact-item {
+  min-width: 220px;
+  text-align: left;
+}
+
+.contact-item h4 {
+  color: var(--neon-1);
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  text-shadow: 0 0 8px rgba(25,179,255,0.3);
+}
+
+.contact-item p {
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.contact-item a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.contact-item a:hover {
+  color: var(--neon-2);
+  text-shadow: 0 0 8px rgba(255,111,145,0.5);
+}
+
+/* Responsive stack on small screens */
+@media (max-width: 768px) {
+  .contact-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    text-align: center;
+  }
+  .contact-item {
+    text-align: center;
+  }
+}
+
