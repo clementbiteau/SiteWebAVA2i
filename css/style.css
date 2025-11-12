@@ -5,7 +5,7 @@
   --neon-3: #68d4ff;   /* azur */
   --ink: #0a0b10;      /* deep navy-black background */
   --text: #eaf2ff;
-  --muted: #9fb2cc;
+  --muted: #48cae1;
 
   --glass-bg: rgba(255,255,255,.06);
   --glass-border: rgba(255,255,255,.10);
@@ -36,9 +36,9 @@ html, body {
 body {
   /* Ambient dual-color lighting, subtle and dynamic */
   background:
-    radial-gradient(1000px 400px at 10% -10%, rgba(25,179,255,.12), transparent 40%),   /* soft cyan from top-left */
+    radial-gradient(1000px 400px at 10% -10%, rgba(36, 182, 255, 0.977), transparent 40%),   /* soft cyan from top-left */
     radial-gradient(1200px 500px at 90% -20%, rgba(255,111,145,.10), transparent 45%), /* warm pink from top-right */
-    radial-gradient(900px 500px at 50% 120%, rgba(25,179,255,.05), transparent 70%),   /* faint reflection from bottom */
+    radial-gradient(900px 500px at 50% 120%, rgba(107, 201, 247, 0.991), transparent 70%),   /* faint reflection from bottom */
     var(--ink);
   background-size: 160% 160%;
   animation: bgShift 45s ease-in-out infinite;
@@ -87,7 +87,7 @@ document.addEventListener('mousemove', e => {
 
 .splash-inner img {
   width: min(42vw, 240px);
-  filter: drop-shadow(0 0 28px rgba(104,212,255,.45));
+  filter: drop-shadow(0 0 28px rgb(26, 176, 235));
 }
 
 @keyframes splashFade {
@@ -910,7 +910,7 @@ section {
   opacity: 1;
   background: radial-gradient(
     800px 400px at 90% 50%,
-    rgba(120,255,220,0.12),
+    rgba(81, 244, 200, 0.767),
     rgba(104,212,255,0.08),
     transparent 70%
   );
@@ -920,8 +920,8 @@ section {
   opacity: 1;
   background: radial-gradient(
     800px 400px at 90% 50%,
-    rgba(120,255,220,0.12),
-    rgba(104,212,255,0.08),
+    rgba(102, 219, 243, 0.813),
+    rgba(104,212,255,0.10),
     transparent 70%
   );
 }
@@ -930,7 +930,7 @@ section {
   opacity: 1;
   background: radial-gradient(
     900px 450px at 60% 40%,
-    rgba(203, 255, 130, 0.12),
+    rgba(148, 32, 198, 0.406),
     rgba(104,212,255,0.10),
     transparent 70%
   );
@@ -940,7 +940,7 @@ section {
   opacity: 1;
   background: radial-gradient(
     900px 450px at 40% 50%,
-    rgba(172, 143, 189, 0.15),
+    rgba(209, 76, 76, 0.15),
     rgba(223, 200, 230, 0.08),
     transparent 70%
   );
