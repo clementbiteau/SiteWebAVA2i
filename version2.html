@@ -113,19 +113,19 @@
 
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-    // === Smooth scroll for side navigation ===
+    // === Smooth scroll for side navigation (robust) ===
     document.querySelectorAll('.nav-widget a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
-        const id = link.getAttribute('href');
-        const target = document.querySelector(id);
+        const target = document.querySelector(link.getAttribute('href'));
         if (!target) return;
 
-        // Wait until splash transition is done
+        const go = () => target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
         if (!document.body.classList.contains('ready')) {
-        setTimeout(() => scrollToSection(target), 2000);
+        setTimeout(go, 2000);
         } else {
-        scrollToSection(target);
+        go();
         }
     });
     });
