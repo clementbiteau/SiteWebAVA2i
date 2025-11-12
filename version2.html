@@ -4,425 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AVA2i • Ingénierie & Innovation</title>
-  <style>
-    :root {
-      --neon-blue: #19b3ff;
-      --neon-pink: #ff6f91;
-      --bg: #05070a;
-      --text: #eaf2ff;
-      --muted: #9fb2cc;
-      --neon-3: #19b3ff;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-      overflow-x: hidden;
-    }
-
-    /* === SPLASH SCREEN === */
-    .intro-screen {
-      position: fixed;
-      inset: 0;
-      background: black;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      opacity: 0;
-      animation: fadeInOut 2s ease-in-out forwards;
-    }
-
-    .intro-screen img {
-      width: 300px;
-      height: auto;
-      margin-bottom: 25px;
-    }
-
-    .intro-screen span {
-      font-size: 3rem;
-      letter-spacing: 1.3px;
-      font-weight: 800;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, var(--neon-3), #fff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 14px rgba(25,179,255,.55);
-      animation: pulseText 3s ease-in-out infinite;
-    }
-
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      15% { opacity: 1; }
-      85% { opacity: 1; }
-      100% { opacity: 0; visibility: hidden; }
-    }
-
-    @keyframes pulseText {
-      0%,100% { text-shadow: 0 0 14px rgba(25,179,255,.55); }
-      50% { text-shadow: 0 0 28px rgba(25,179,255,.9); }
-    }
-
-    body:not(.ready) main, 
-    body:not(.ready) .widget-panel, 
-    body:not(.ready) .bg-logo,
-    body:not(.ready) .logo-fixed {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    body.ready main,
-    body.ready .widget-panel,
-    body.ready .bg-logo,
-    body.ready .logo-fixed {
-      opacity: 1;
-      transition: opacity 1.2s ease-in;
-    }
-
-    /* === FIXED LOGO TOP-LEFT === */
-    .logo-fixed {
-      position: fixed;
-      top: 20px;
-      left: 25px;
-      z-index: 999;
-      cursor: pointer;
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-
-    .logo-fixed img {
-      width: 80px;
-      height: auto;
-    }
-
-    .logo-fixed:hover {
-      transform: scale(1.05);
-    }
-
-    /* === LOGO DE FOND === */
-    .bg-logo {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1.05);
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 800;
-      font-size: 28vw;
-      color: transparent;
-      text-shadow:
-        0 0 60px rgba(25,179,255,0.25),
-        0 0 120px rgba(25,179,255,0.2),
-        0 0 200px rgba(25,179,255,0.15);
-      opacity: 0.22;
-      filter: blur(1.2px);
-      pointer-events: none;
-      animation: breathe 9s ease-in-out infinite;
-      z-index: 0;
-    }
-
-    @keyframes breathe {
-      0%,100% { opacity: 0.22; }
-      50% { opacity: 0.3; }
-    }
-
-    /* === WIDGET LATÉRAL ARRONDI === */
-    .widget-panel {
-      position: fixed;
-      top: 50%;
-      left: 20px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 50;
-      background: rgba(25,179,255,0.05);
-      border-radius: 50px;
-      padding: 18px 12px;
-      backdrop-filter: blur(18px);
-      box-shadow: 0 0 40px rgba(25,179,255,0.08);
-      border: 1px solid rgba(255,255,255,0.05);
-      transition: all 0.4s ease;
-    }
-
-    .widget-panel:hover {
-      background: rgba(25,179,255,0.08);
-      box-shadow: 0 0 60px rgba(25,179,255,0.15);
-    }
-
-    .logo-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      margin-bottom: 15px;
-    }
-
-    /* === UPDATED AVA2i TEXT STYLE === */
-    .logo-text {
-      font-size: 1.5rem;
-      letter-spacing: 1.3px;
-      font-weight: 800;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, var(--neon-3), #fff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 14px rgba(25,179,255,.55);
-      animation: pulseText 4s ease-in-out infinite;
-    }
-
-    .nav-widget {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .nav-widget a {
-      display: block;
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 600;
-      opacity: 0.8;
-      padding: 10px 14px;
-      border-radius: 25px;
-      transition: background 0.3s, opacity 0.3s, transform 0.3s;
-      white-space: nowrap;
-    }
-
-    .nav-widget a:hover {
-      background: rgba(25,179,255,0.15);
-      opacity: 1;
-      transform: translateX(4px);
-    }
-
-    section {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero h2 {
-      font-size: 3rem;
-      background: linear-gradient(135deg, #bfe6ff, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      max-width: 700px;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .btn-primary {
-      margin-top: 30px;
-      background: linear-gradient(135deg, #4f9dff, var(--neon-blue));
-      color: #001018;
-      padding: 12px 34px;
-      border: none;
-      border-radius: 40px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.35s, box-shadow 0.35s;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(25,179,255,.25);
-    }
-
-    /* === CLIENT LOGO SLIDER === */
-    .clients-slider {
-      width: 100%;
-      overflow: hidden;
-      margin: 80px 0;
-      position: relative;
-    }
-
-    .clients-track {
-      display: flex;
-      gap: 60px;
-      width: max-content;
-      animation: scrollClients 45s linear infinite;
-    }
-
-    @keyframes scrollClients {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    .clients-track img {
-      height: 60px;
-      filter: brightness(1.2) drop-shadow(0 0 8px rgba(25,179,255,0.35));
-      opacity: 0.85;
-      transition: opacity 0.3s, transform 0.3s;
-    }
-
-    .clients-track img:hover {
-      opacity: 1;
-      transform: scale(1.1);
-    }
-
-    /* === CAROUSEL WIDGET === */
-    .carousel-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 0 60px; /* less vertical space */
-    overflow: hidden;
-    position: relative;
-    }
-
-    .carousel-widget {
-    width: 95%;
-    max-width: 1400px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-    display: flex;
-    -webkit-overflow-scrolling: touch;
-    padding: 20px 10px;
-    }
-
-    .carousel-widget::-webkit-scrollbar {
-    height: 6px;
-    }
-    .carousel-widget::-webkit-scrollbar-thumb {
-    background: rgba(25,179,255,0.3);
-    border-radius: 10px;
-    }
-    .carousel-widget::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.05);
-    }
-
-    .carousel-track {
-    display: flex;
-    gap: 100px; /* more separation between cards */
-    padding: 10px 40px;
-    }
-
-    .carousel-card {
-    flex: 0 0 460px; /* larger cards */
-    height: 420px; /* more presence for future 3D content */
-    background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-    border-radius: 30px;
-    border: 1px solid rgba(255,255,255,.08);
-    box-shadow:
-        0 0 60px rgba(25,179,255,.12),
-        inset 0 0 40px rgba(255,255,255,.03);
-    padding: 50px 40px;
-    text-align: left;
-    transition: transform 0.6s ease, box-shadow 0.6s ease;
-    backdrop-filter: blur(12px);
-    cursor: grab;
-    perspective: 1000px;
-    }
-
-    .carousel-card:active {
-    cursor: grabbing;
-    }
-
-    .carousel-card:hover {
-    transform: scale(1.07) rotateY(8deg);
-    box-shadow: 0 25px 80px rgba(25,179,255,.25);
-    }
-
-    .carousel-card h3 {
-    font-size: 2.4rem;
-    margin-bottom: 18px;
-    background: linear-gradient(90deg, var(--neon-blue), #fff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 1px;
-    }
-
-    .carousel-card p {
-    font-size: 1.1rem;
-    color: var(--muted);
-    line-height: 1.6;
-    max-width: 90%;
-    }
-
-    /* === PARTNERS ANIMATION === */
-    .partners {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      margin-top: 40px;
-    }
-
-    .partner-card {
-      --glow: rgba(25,179,255,.35);
-      min-width: 240px;
-      padding: 28px 30px;
-      border-radius: 18px;
-      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-      border: 1px solid rgba(255,255,255,.08);
-      box-shadow: inset 0 0 40px rgba(255,255,255,.03), 0 0 0 0 var(--glow);
-      color: #dff1ff;
-      font-weight: 800;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      position: relative;
-      overflow: hidden;
-      transform: translateZ(0);
-      transition: transform .45s ease, box-shadow .45s ease, border-color .45s ease;
-    }
-
-    .partner-card::before {
-      content: "";
-      position: absolute;
-      inset: -120%;
-      background: conic-gradient(from 0deg, transparent, rgba(25,179,255,.15), transparent 30%);
-      animation: spin 10s linear infinite;
-    }
-
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .partner-card span {
-      position: relative;
-      z-index: 1;
-      font-size: 1.1rem;
-    }
-
-    .partner-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 15px 50px rgba(25,179,255,.25);
-      border-color: rgba(25,179,255,.5);
-    }
-
-    .snow { --glow: rgba(104,212,255,.35); }
-    .dbx { --glow: rgba(255,111,145,.35); }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #8aa4c3;
-      border-top: 1px solid rgba(255,255,255,.05);
-    }
-
-    .reveal { opacity: 0; transform: translateY(20px) scale(.98); filter: blur(4px); transition: opacity .9s ease, transform .9s ease, filter .9s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <!-- SPLASH SCREEN -->
   <div class="intro-screen">
     <img src="img/ava2ilogoneon.png" alt="AVA2i Logo">
@@ -435,7 +20,7 @@
   </div>
 
   <!-- LOGO DE FOND -->
-  <div class="bg-logo">AVA2i</div>
+  <div class="watermark" aria-hidden="true"></div>
 
   <!-- WIDGET LATÉRAL -->
   <div class="widget-panel">
@@ -445,6 +30,7 @@
     </div>
     <div class="nav-widget">
       <a href="#vision">Vision</a>
+      <a href="#clients">Clients</a>
       <a href="#partenaires">Partenaires</a>
       <a href="#contact">Contact</a>
     </div>
@@ -452,36 +38,8 @@
 
   <main>
     <section class="hero">
-      <h2 class="reveal">Imaginer la donnée autrement</h2>
-      <p class="reveal">AVA2i conçoit des expériences de données où la technologie devient art : architectures nuancées, IA poétique, cloud conscient.</p>
-      <button class="btn-primary reveal">Explorer</button>
-
-      <!-- === CLIENTS SCROLL === -->
-      <div class="clients-slider reveal">
-        <div class="clients-track">
-          <img src="img/CA.png" alt="Crédit Agricole">
-          <img src="img/BPCE.png" alt="BPCE">
-          <img src="img/BNP.png" alt="BNP Paribas">
-          <img src="img/SG.png" alt="Société Générale">
-          <img src="img/AXA.png" alt="AXA">
-          <img src="img/Dalkia.png" alt="Dalkia">
-          <img src="img/Natixis.png" alt="Natixis">
-          <img src="img/Generali.png" alt="Generali">
-          <img src="img/Accor.png" alt="Accor">
-          <img src="img/SFR.png" alt="SFR">
-          <!-- duplicate for seamless scroll -->
-          <img src="img/CA.png" alt="">
-          <img src="img/BPCE.png" alt="">
-          <img src="img/BNP.png" alt="">
-          <img src="img/SG.png" alt="">
-          <img src="img/AXA.png" alt="">
-          <img src="img/Dalkia.png" alt="">
-          <img src="img/Natixis.png" alt="">
-          <img src="img/Generali.png" alt="">
-          <img src="img/Accor.png" alt="">
-          <img src="img/SFR.png" alt="">
-        </div>
-      </div>
+        <h1 class="headline">Imaginer la <span>DATA</span> autrement</h1>
+        <p class="sub">Ingénierie & Innovation — Cloud • Data • IA</p>
     </section>
 
     <!-- === CAROUSEL WIDGET === -->
@@ -502,9 +60,24 @@
             </div>
         </div>
         </div>
-    </section>  
+    </section>
+        <!-- === CLIENTS SCROLL === -->
+    <section id="clients" class="clients-slider reveal">
+        <div class="clients-track">
+            <img src="img/CA.png" alt="Crédit Agricole">
+            <img src="img/BPCE.png" alt="BPCE">
+            <img src="img/BNP.png" alt="BNP Paribas">
+            <img src="img/SG.png" alt="Société Générale">
+            <img src="img/AXA.png" alt="AXA">
+            <img src="img/Dalkia.png" alt="Dalkia">
+            <img src="img/Natixis.png" alt="Natixis">
+            <img src="img/Generali.png" alt="Generali">
+            <img src="img/Accor.png" alt="Accor">
+            <img src="img/SFR.png" alt="SFR">
+        </div>
+    </section>
 
-    <section id="partenaires">
+    <section id="partenaires" class="partenaires-section reveal">
       <h3 class="reveal" style="font-size:2rem; background:linear-gradient(90deg, var(--neon-blue), var(--neon-pink)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">Nos Partenaires</h3>
       <p class="reveal" style="color:var(--muted);">Des collaborations emblématiques de l’innovation Cloud & Data.</p>
       <div class="partners">
@@ -540,31 +113,31 @@
 
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
-    // Custom smooth scroll with slower feel
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    // === Smooth scroll for side navigation ===
+    document.querySelectorAll('.nav-widget a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const id = link.getAttribute('href');
+        const target = document.querySelector(id);
         if (!target) return;
 
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 1000;
-        let start = null;
-
-        function step(timestamp) {
-        if (!start) start = timestamp;
-        const progress = timestamp - start;
-        const ease = progress / duration < 1
-            ? 1 - Math.pow(1 - progress / duration, 3)
-            : 1;
-        window.scrollTo(0, startPosition + distance * ease);
-        if (progress < duration) requestAnimationFrame(step);
+        // Wait until splash transition is done
+        if (!document.body.classList.contains('ready')) {
+        setTimeout(() => scrollToSection(target), 2000);
+        } else {
+        scrollToSection(target);
         }
-        requestAnimationFrame(step);
     });
     });
+
+    function scrollToSection(target) {
+    const top = target.getBoundingClientRect().top + window.pageYOffset - 60; // offset for fixed widget
+    window.scrollTo({
+        top,
+        behavior: 'smooth'
+    });
+    }
+
     // Horizontal scroll with mouse wheel
     const carousel = document.querySelector('.carousel-widget');
     if (carousel) {
@@ -586,6 +159,13 @@
         card.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
     });
     });
+
+    // Infinite clients loop
+    const track = document.querySelector('.clients-track');
+    if (track) {
+    track.innerHTML += track.innerHTML;
+    }
+
   </script>
 </body>
 </html>
