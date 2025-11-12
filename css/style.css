@@ -721,14 +721,14 @@ section {
   width: 100%;
   overflow: hidden;
   position: relative;
-  margin: 80px 0;
+  margin: 100px 0;
 }
 
 .clients-track {
   display: flex;
   gap: 60px;
   width: max-content;
-  animation: scrollClients 45s linear infinite;
+  animation: scrollClients 40s linear infinite;
 }
 
 .clients-track img {
@@ -744,8 +744,12 @@ section {
 }
 
 @keyframes scrollClients {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* === CAROUSEL WIDGET === */
@@ -887,7 +891,8 @@ section {
 /* === SECTION-SPECIFIC BACKLIGHTS === */
 #vision::before,
 #clients::before,
-#partenaires::before {
+#partenaires::before,
+#contact::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -930,6 +935,16 @@ section {
   );
 }
 
+#contact.visible::before {
+  opacity: 1;
+  background: radial-gradient(
+    900px 450px at 40% 50%,
+    rgba(240,240,255,0.15),
+    rgba(200,210,230,0.08),
+    transparent 70%
+  );
+}
+
 footer {
   text-align: center;
   padding: 40px 20px;
@@ -957,6 +972,8 @@ footer {
 
 #vision.visible::before,
 #clients.visible::before,
-#partenaires.visible::before {
+#partenaires.visible::before,
+#contact.visible::before {
   animation: glowFloat 20s ease-in-out infinite;
 }
+ 
