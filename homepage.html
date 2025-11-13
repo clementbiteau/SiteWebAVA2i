@@ -8,6 +8,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+  <div id="ambient-waves">
+    <div class="wave-set wave-purple"></div>
+    <div class="wave-set wave-blue"></div>
+    <div class="wave-set wave-cyan"></div>
+  </div>
+  
   <!-- SPLASH SCREEN -->
   <div class="intro-screen">
     <img src="img/logoava2ifinal.png" alt="AVA2i Logo">
@@ -246,6 +252,13 @@
         requestAnimationFrame(step);
         });
     }
+    // document.addEventListener("mousemove", (e) => {
+    //   const x = (e.clientX / window.innerWidth) * 100;
+    //   const y = (e.clientY / window.innerHeight) * 100;
+
+    //   document.documentElement.style.setProperty("--wx", `${x}%`);
+    //   document.documentElement.style.setProperty("--wy", `${y}%`);
+    // });
   </script>
 </body>
 </html>

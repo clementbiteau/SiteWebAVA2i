@@ -1,9 +1,9 @@
 /* ===== AVA2i • Final Ambient Dual-Neon Lighting (Subtle & Dynamic) ===== */
 :root {
-  --neon-1: #19b3ff;   /* cyan */
-  --neon-2: #ff6f91;   /* rose */
-  --neon-3: #68d4ff;   /* azur */
-  --ink: #0a0b10;      /* deep navy-black background */
+  --neon-1: #19b3ff;
+  --neon-2: #ff6f91;
+  --neon-3: #68d4ff;
+  --ink: #0a0b10;
   --text: #eaf2ff;
   --muted: #48cae1;
 
@@ -36,9 +36,9 @@ html, body {
 body {
   /* Ambient dual-color lighting, subtle and dynamic */
   background:
-    radial-gradient(1000px 400px at 10% -10%, rgba(36, 182, 255, 0.977), transparent 40%),   /* soft cyan from top-left */
-    radial-gradient(1200px 500px at 90% -20%, rgba(255,111,145,.10), transparent 45%), /* warm pink from top-right */
-    radial-gradient(900px 500px at 50% 120%, rgba(107, 201, 247, 0.991), transparent 70%),   /* faint reflection from bottom */
+    radial-gradient(1000px 400px at 10% -10%, rgba(36, 182, 255, 0.977), transparent 40%),
+    radial-gradient(1200px 500px at 90% -20%, rgba(255,111,145,.10), transparent 45%),
+    radial-gradient(900px 500px at 50% 120%, rgba(107, 201, 247, 0.991), transparent 70%),
     var(--ink);
   background-size: 160% 160%;
   animation: bgShift 45s ease-in-out infinite;
@@ -1051,4 +1051,104 @@ main, section, .hero, .section {
 .watermark {
   z-index: 0 !important;
   opacity: 0.05 !important;
+}
+
+/* === WARM WAVE EFFECT — TOP SECTION === */
+/* Main container */
+#ambient-waves {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px) brightness(1.35);
+  mix-blend-mode: screen;
+}
+
+/* Every colour layer will fade in/out + breathe + vibrate */
+.wave-set {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* 3 combined animations */
+  animation:
+    colorFade 8s ease-in-out infinite alternate,
+    breathe 6s ease-in-out infinite alternate,
+    vibrate 0.35s ease-in-out infinite;
+}
+
+/* PURPLE → layer 1 */
+.wave-purple {
+  --c1: rgba(180, 60, 255, 0.65);
+  --c2: rgba(90, 60, 255, 0.35);
+  animation-delay: 0s;
+}
+
+/* BLUE → layer 2 */
+.wave-blue {
+  --c1: rgba(60, 120, 255, 0.65);
+  --c2: rgba(30, 160, 255, 0.35);
+  animation-delay: -2.6s;
+}
+
+/* CYAN → layer 3 */
+.wave-cyan {
+  --c1: rgba(0, 200, 255, 0.65);
+  --c2: rgba(0, 140, 255, 0.35);
+  animation-delay: -5.3s;
+}
+
+/* Left & right waves for each set */
+.wave-set::before,
+.wave-set::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.wave-set::before {
+  background:
+    radial-gradient(
+      1800px 700px at calc(var(--wx, 50%) - 50%) calc(100% + 10%),
+      var(--c1),
+      var(--c2) 40%,
+      transparent 75%
+    );
+}
+
+.wave-set::after {
+  background:
+    radial-gradient(
+      1800px 700px at calc(var(--wx, 50%) + 50%) calc(100% + 10%),
+      var(--c1),
+      var(--c2) 40%,
+      transparent 75%
+    );
+}
+
+/* 🌈 Faster, smoother colour crossfading between layers */
+@keyframes colorFade {
+  0%   { opacity: 0.00; }
+  50%  { opacity: 1.00; }
+  100% { opacity: 0.00; }
+}
+
+/* 🌬 Bigger breathing motion */
+@keyframes breathe {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.07); }
+}
+
+/* ⚡ Micro-vibration for a living, electric feel */
+@keyframes vibrate {
+  0%   { transform: translate(0px, 0px); }
+  33%  { transform: translate(-0.8px, 0.6px); }
+  66%  { transform: translate(0.6px, -0.4px); }
+  100% { transform: translate(0px, 0px); }
 }
