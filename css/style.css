@@ -470,6 +470,14 @@ document.addEventListener('mousemove', e => {
   .flyout{ display:none; }
 }
 
+@media (max-width: 600px) {
+  .section h3 {
+    font-size: 0.95rem !important;
+    padding: 0 16px;
+    line-height: 1.6 !important;
+  }
+}
+
 :root {
   --neon-blue: #19b3ff;
   --neon-pink: #ff6f91;
@@ -549,6 +557,7 @@ body.ready .logo-fixed {
 }
 
 /* === FIXED LOGO TOP-LEFT === */
+/* Desktop / default */
 .logo-fixed {
   position: fixed;
   top: 20px;
@@ -556,6 +565,7 @@ body.ready .logo-fixed {
   z-index: 999;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
+  padding: env(safe-area-inset-top) env(safe-area-inset-left);
 }
 
 .logo-fixed img {
@@ -565,6 +575,25 @@ body.ready .logo-fixed {
 
 .logo-fixed:hover {
   transform: scale(1.05);
+}
+
+/* 📱 Mobile-optimized version */
+@media (max-width: 600px) {
+  .logo-fixed {
+    top: calc(10px + env(safe-area-inset-top));
+    left: calc(10px + env(safe-area-inset-left));
+  }
+
+  .logo-fixed img {
+    width: 58px;   /* smaller logo for mobile */
+  }
+}
+
+/* Extra small screens (very small phones, older Androids) */
+@media (max-width: 380px) {
+  .logo-fixed img {
+    width: 50px;
+  }
 }
 
 /* === LOGO DE FOND === */
@@ -951,6 +980,13 @@ footer {
   padding: 40px 20px;
   color: #8aa4c3;
   border-top: 1px solid rgba(255,255,255,.05);
+}
+
+
+@media (max-width: 500px) {
+  footer p {
+    font-size: 0.8rem;
+  }
 }
 
 /* === REVEAL EFFECT === */
