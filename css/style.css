@@ -565,6 +565,18 @@ body.ready .logo-fixed {
   transition: opacity 1.2s ease-in;
 }
 
+/* === FIXED LOGO SHORT === */
+/* Logo inline dans un texte (petit format) */
+.logo-short {
+  width: 50px !important;
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
+  position: static; /* important: pas fixed */
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
 /* === FIXED LOGO TOP-LEFT === */
 /* Desktop / default */
 .logo-fixed {
@@ -601,6 +613,47 @@ body.ready .logo-fixed {
 /* Extra small screens (very small phones, older Androids) */
 @media (max-width: 380px) {
   .logo-fixed img {
+    width: 50px;
+  }
+}
+
+
+/* === FIXED LOGO TOP-RIGHT === */
+/* Desktop / default */
+.logo-right {
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  z-index: 999;
+  cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  padding: env(safe-area-inset-top) env(safe-area-inset-left);
+}
+
+.logo-right img {
+  width: 80px;
+  height: auto;
+}
+
+.logo-right:hover {
+  transform: scale(1.05);
+}
+
+/* 📱 Mobile-optimized version */
+@media (max-width: 600px) {
+  .logo-right {
+    top: calc(10px + env(safe-area-inset-top));
+    left: calc(10px + env(safe-area-inset-left));
+  }
+
+  .logo-right img {
+    width: 58px;   /* smaller logo for mobile */
+  }
+}
+
+/* Extra small screens (very small phones, older Androids) */
+@media (max-width: 380px) {
+  .logo-right img {
     width: 50px;
   }
 }

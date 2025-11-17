@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorer • AVA2i — Ingénierie & Innovation</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="ready">
+<body>
+  <div class="logo-fixed" onclick="window.location.href='index.html'">
+    <img src="img/logoava2ifinal.png" alt="AVA2i">
+  </div>
+<div class="logo-right">
+    <img src="img/logodatabricks.png" alt="Databricks">
+  </div>
+
+  <div class="watermark" aria-hidden="true"></div>
+
+  <main>
+    <section class="hero" style="min-height:90vh;">
+      <h1 class="headline"><span>Databricks</span></h1>
+      <h3 class="sub">L'excellence de la Data Science pour un développement incontesté.</h3>
+    </section>
+
+    <!-- === Success Story 1 === -->
+    <section class="section reveal">
+      <h2 class="tricolor-text" style="font-size:2rem;">Notre ADN : l’Ingénierie des Données</h2>
+      <h3 style="max-width:800px; margin:auto; line-height:1.8; color:var(--muted);">
+        Chez <strong>AVA2i</strong>, la donnée n’est pas un simple actif : c’est un langage, une matière vivante qui relie les métiers, la technologie et la stratégie.  
+        Nous concevons des <strong>architectures souveraines</strong> et scalables, capables d’évoluer dans des environnements multicloud exigeants, tout en respectant les normes les plus strictes de sécurité et de conformité (RGPD, ISO 27001).  
+        De la gouvernance à la valorisation, nous accompagnons nos clients dans chaque étape de leur transformation data.
+      </h3>
+    </section>
+
+    <footer>
+      <p>© 2025 — AVA2i • Ingénierie & Innovation</p>
+    </footer>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.18 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
+<!-- Website built by Clément Biteau - 2025 -->
