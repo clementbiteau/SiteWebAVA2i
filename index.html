@@ -52,24 +52,24 @@
         <div class="carousel-widget">
         <div class="carousel-track">
             <div class="carousel-card">
-            <h3>Data</h3>
-            <p>Architecture, gouvernance et valorisation des données au service de la stratégie.</p>
+            <h3>Gouvernance Data</h3>
+            <p>Nous transformons vos données en un véritable levier stratégique. De l’architecture à la gouvernance, nos experts conçoivent des environnements fiables, unifiés et orientés performance pour générer de la valeur mesurable.</p>
             </div>
             <div class="carousel-card">
-            <h3>IA</h3>
-            <p>Des modèles intelligents, transparents et performants pour amplifier la décision humaine.</p>
+            <h3>IA NewGen</h3>
+            <p>Nous développons des modèles intelligents, explicables et performants qui renforcent la prise de décision. De l’automatisation à l’IA générative, nos solutions amplifient l’efficacité humaine en toute transparence.</p>
             </div>
             <div class="carousel-card">
-            <h3>Cloud</h3>
-            <p>Infrastructures agiles, scalables et éthiques, pensées pour demain.</p>
+            <h3>Agilité Cloud</h3>
+            <p>Nous bâtissons des architectures Cloud agiles, scalables et résilientes. GCP, AWS ou Azure : nos ingénieurs exploitent le meilleur de chaque plateforme pour accélérer votre transformation et optimiser vos investissements.</p>
             </div>
             <div class="carousel-card">
-            <h3>Infra</h3>
-            <p>Infrastructure fiable, performante, évolutive et pensée pour la durabilité.</p>
+            <h3>Infra Robuste</h3>
+            <p>Nous concevons des infrastructures robustes, sécurisées et évolutives, capables de soutenir vos ambitions à long terme. Haute disponibilité, performance et durabilité forment le socle de nos interventions.</p>
             </div>
             <div class="carousel-card">
-            <h3>Applicatif</h3>
-            <p>Applications sur mesure, intuitives, sécurisées et pensées pour l’impact.</p>
+            <h3>Applicatif et Production</h3>
+            <p>Nous développons des applications sur mesure, intuitives et sécurisées, capables de porter votre activité. Du design à la mise en production, nous créons des solutions qui allient performance, expérience utilisateur et impact business.</p>
             </div>
         </div>
         </div>
@@ -241,14 +241,34 @@
     });
     }
 
-    // Horizontal scroll with mouse wheel
-    const carousel = document.querySelector('.carousel-widget');
-    if (carousel) {
+  const carousel = document.querySelector('.carousel-widget');
+  if (carousel) {
     carousel.addEventListener('wheel', (evt) => {
-        evt.preventDefault();
-        carousel.scrollLeft += evt.deltaY * 0.6; // adjust sensitivity
-    });
-    }
+      const absX = Math.abs(evt.deltaX);
+      const absY = Math.abs(evt.deltaY);
+
+      // Choose the dominant axis (Mac = Y, some PC = X)
+      let delta = absY > absX ? evt.deltaY : evt.deltaX;
+
+      // If there is basically no scroll info, do NOT block default behavior
+      if (delta === 0) {
+        return; // laisse le scroll normal passer
+      }
+
+      // Now we take control of the scroll
+      evt.preventDefault();
+
+      // Boost for small Windows/ThinkPad deltas
+      const baseSpeed = 1.4;
+      if (Math.abs(delta) < 5) {
+        delta *= 6; // boost small delta values
+      }
+
+      carousel.scrollLeft += delta * baseSpeed;
+    }, { passive: false });
+  }
+
+
     document.querySelectorAll('.carousel-card').forEach(card => {
     card.addEventListener('mousemove', e => {
         const rect = card.getBoundingClientRect();
