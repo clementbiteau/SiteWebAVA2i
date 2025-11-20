@@ -825,7 +825,7 @@ section {
   display: flex;
   gap: 60px;
   width: max-content;
-  animation: scrollClients 200s linear infinite;
+  animation: scrollClients 120s linear infinite;
 }
 
 .clients-track img {
