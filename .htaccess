@@ -1,34 +1,22 @@
 RewriteEngine On
 
-# Page principale = index.html
+# Homepage
 DirectoryIndex index.html
 
-# Rediriger /index.html vers /
+# Redirect /index.html -> /
 RewriteCond %{THE_REQUEST} \s/+index\.html[\s?]
 RewriteRule ^index\.html$ / [R=301,L]
 
-# Optionnel : /home -> /
+# Optional: /home -> /
 RewriteRule ^home/?$ / [R=301,L]
 
-##########################################
-#           ALIAS PROPRE
-##########################################
-
-# /cloud  -> cloudpage.html
-RewriteRule ^cloud/?$ cloudpage.html [L]
-
-# /snowflake  -> snowflakepage.html
-RewriteRule ^snowflake/?$ snowflakepage.html [L]
-
-# /databricks  -> databrickspage.html
-RewriteRule ^databricks/?$ databrickspage.html [L]
-
-# /explore  -> explorepage.html
-RewriteRule ^explore/?$ explorepage.html [L]
 
 ##########################################
-# Retirer les .html pour toutes les pages
+# REMOVE .html EXTENSIONS (OVH WORKING VERSION)
 ##########################################
+# If the URL doesn't point to a real file or folder
+RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+# If adding .html makes a valid file
 RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.+?)/?$ $1.html [L]
+RewriteRule ^(.+)$ $1.html [L]
