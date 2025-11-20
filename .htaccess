@@ -10,7 +10,25 @@ RewriteRule ^index\.html$ / [R=301,L]
 # Optionnel : /home -> /
 RewriteRule ^home/?$ / [R=301,L]
 
-# Retirer les .html (cloudpage -> cloudpage.html, etc.)
+##########################################
+#           ALIAS PROPRE
+##########################################
+
+# /cloud  -> cloudpage.html
+RewriteRule ^cloud/?$ cloudpage.html [L]
+
+# /snowflake  -> snowflakepage.html
+RewriteRule ^snowflake/?$ snowflakepage.html [L]
+
+# /databricks  -> databrickspage.html
+RewriteRule ^databricks/?$ databrickspage.html [L]
+
+# /explore  -> explorepage.html
+RewriteRule ^explore/?$ explorepage.html [L]
+
+##########################################
+# Retirer les .html pour toutes les pages
+##########################################
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
