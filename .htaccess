@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Page principale = index.html
+DirectoryIndex index.html
+
+# Rediriger /index.html vers /
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?]
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Optionnel : /home -> /
+RewriteRule ^home/?$ / [R=301,L]
+
+# Retirer les .html (cloudpage -> cloudpage.html, etc.)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
