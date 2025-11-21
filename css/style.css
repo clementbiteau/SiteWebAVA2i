@@ -622,16 +622,16 @@ body.ready .logo-fixed {
 /* Desktop / default */
 .logo-right {
   position: fixed;
-  top: 20px;
-  right: 25px;
-  z-index: 999;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
   cursor: pointer;
   transition: transform 0.3s ease, filter 0.3s ease;
-  padding: env(safe-area-inset-top) env(safe-area-inset-left);
+  padding: 0;
 }
 
 .logo-right img {
-  width: 80px;
+  width: 70px;
   height: auto;
 }
 
@@ -643,15 +643,15 @@ body.ready .logo-fixed {
 @media (max-width: 600px) {
   .logo-right {
     top: calc(10px + env(safe-area-inset-top));
-    left: calc(10px + env(safe-area-inset-left));
+    right: calc(10px + env(safe-area-inset-right)); /* FIXED HERE */
   }
 
   .logo-right img {
-    width: 58px;   /* smaller logo for mobile */
+    width: 58px;
   }
 }
 
-/* Extra small screens (very small phones, older Androids) */
+/* Extra small screens */
 @media (max-width: 380px) {
   .logo-right img {
     width: 50px;
