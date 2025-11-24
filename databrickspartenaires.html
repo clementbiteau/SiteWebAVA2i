@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="/favicon-32.png?v=2">
+  <link rel="shortcut icon" type="image/png" href="/favicon-32.png?v=2">
+  <title>Explorer • AVA2i — Ingénierie & Innovation</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body class="ready">
+<body>
+  <div class="logo-fixed" onclick="window.location.href='index.html'">
+    <img src="img/logoava2ifinal.png" alt="AVA2i">
+  </div>
+
+  <div class="watermark" aria-hidden="true"></div>
+
+  <main>
+    <section class="hero" style="min-height:90vh;">
+      <h1 class="headline"><span>Databricks</span></h1>
+      <h3 class="sub">Un partenariat d’excellence au service de l’innovation, de la confiance et de la performance.</h3>
+    </section>
+
+   <!-- === CHAPITRE 1 === -->
+  <section class="section reveal">
+    <h2 class="tricolor-text" style="font-size:2rem;">Notre Partenariat : la Puissance de Databricks</h2>
+      <h3 style="max-width:800px; margin:auto; line-height:1.8; color:var(--muted);">
+    Avec <strong>Databricks</strong>, nous unissons ingénierie des données et technologie de pointe pour offrir une plateforme unifiée,
+    performante et entièrement tournée vers la valorisation de la donnée.  
+    Ce partenariat nous permet de construire des <strong>architectures modernes, ouvertes et scalables</strong>, capables d’intégrer ingestion, traitement, gouvernance et IA dans un même écosystème.
+    En combinant l’expertise d’<strong>AVA2i</strong> et la puissance du <strong>Lakehouse Databricks</strong>, nous accompagnons nos clients dans l’accélération de leurs projets data, tout en garantissant sécurité, conformité et performance.
+    </h3>
+  </section>
+
+  <!-- === CHAPITRE 2 === -->
+<section class="section reveal">
+  <h2 class="tricolor-text" style="font-size:2rem;">Databricks : l’Écosystème Unifié de la Donnée</h2>
+  <h3 style="max-width:800px; margin:auto; line-height:1.8; color:var(--muted);">
+    Plateforme pionnière du paradigme <strong>Lakehouse</strong>, 
+    <a href="https://www.databricks.com/" target="_blank" style="color:var(--primary); text-decoration:underline;">Databricks</a> 
+    offre un environnement unique réunissant data engineering, data science, gouvernance et intelligence artificielle.  
+    Avec sa vision moderne et orientée performance, Databricks permet d’unifier l’ensemble du cycle de vie de la donnée, depuis son ingestion jusqu’à son exploitation avancée via le ML et le traitement en temps réel.  
+    Adoptée par les leaders mondiaux, la plateforme se distingue par sa capacité à accélérer la transformation data tout en garantissant scalabilité, sécurité et interopérabilité.
+  </h3>
+        <div class="contact-item">
+        <strong>Partner Lead</strong><br>
+        <a href="mailto:clement.biteau@ava2i.com">clement.biteau@ava2i.com</a><br><br>
+        </div>
+    </section>
+</section>
+
+
+
+
+    <footer>
+      <p>© 2025 — AVA2i • Ingénierie & Innovation</p>
+    </footer>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.18 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
+<!-- Website built by Clément Biteau - 2025 -->

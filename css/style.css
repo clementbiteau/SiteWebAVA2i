@@ -28,7 +28,7 @@ html, body {
   overflow-x: hidden;
 }
 
-#vision, #clients, #partenaires, #contact {
+#vision, #clients, #partenaires, #contact, #partenairesship {
   scroll-margin-top: 80px;
 }
 
@@ -994,6 +994,7 @@ section {
 #vision::before,
 #clients::before,
 #partenaires::before,
+#partenairesship::before,
 #contact::before {
   content: "";
   position: absolute;
@@ -1036,6 +1037,17 @@ section {
     transparent 70%
   );
 }
+
+#partenairesship.visible::before {
+  opacity: 1;
+  background: radial-gradient(
+    900px 450px at 60% 40%,
+    rgba(148, 32, 198, 0.406),
+    rgba(104,212,255,0.10),
+    transparent 70%
+  );
+}
+
 
 #contact.visible::before {
   opacity: 1;
@@ -1082,6 +1094,7 @@ footer {
 #vision.visible::before,
 #clients.visible::before,
 #partenaires.visible::before,
+#partenairesship.visible::before,
 #contact.visible::before {
   animation: glowFloat 20s ease-in-out infinite;
 }
