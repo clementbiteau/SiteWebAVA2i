@@ -339,6 +339,7 @@ input:focus, textarea:focus, button:focus, a:focus {
 }
 .headline {
   margin: 0;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: clamp(26px, 4.6vw, 54px);
   letter-spacing: .2px;
