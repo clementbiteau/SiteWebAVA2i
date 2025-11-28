@@ -1,22 +1,7 @@
 RewriteEngine On
-
-# Homepage
-DirectoryIndex index.html
-
-# Redirect /index.html -> /
-RewriteCond %{THE_REQUEST} \s/+index\.html[\s?]
-RewriteRule ^index\.html$ / [R=301,L]
-
-# Optional: /home -> /
-RewriteRule ^home/?$ / [R=301,L]
-
-
-##########################################
-# REMOVE .html EXTENSIONS (OVH WORKING VERSION)
-##########################################
-# If the URL doesn't point to a real file or folder
-RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-# If adding .html makes a valid file
-RewriteCond %{REQUEST_FILENAME}.html -f
-RewriteRule ^(.+)$ $1.html [L]
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^/]+)/?$ $1.html [L]
+
+RewriteCond %{THE_REQUEST} \s/+(.+)\.html[\s?]
+RewriteRule ^ %1 [R=301,L]

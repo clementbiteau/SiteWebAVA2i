@@ -96,6 +96,69 @@ document.addEventListener('mousemove', e => {
   100% { opacity: 0; visibility: hidden; }
 }
 
+
+/* ---- Custom cursor styles ---- */
+.custom-cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none; /* never block clicks */
+  z-index: 9999;
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
+  opacity: 1;
+}
+
+.cursor-ring,
+.cursor-dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* ring (slightly larger) */
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,0.7);
+  box-sizing: border-box;
+  background: transparent;
+}
+
+/* small dot (actual pointer) */
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.85);
+}
+
+/* hide native cursor on whole page when custom cursor active */
+html.custom-cursor-enabled, body.custom-cursor-enabled {
+  cursor: none;
+}
+
+/* hidden state (when leaving window or disabled) */
+.custom-cursor.hidden { opacity: 0; pointer-events: none; }
+
+/* Improve behaviour for interactive elements:
+   when hovering form controls, show native cursor to preserve usability */
+.show-native-cursor *:hover,
+body.show-native-cursor *:hover,
+input:focus, textarea:focus, button:focus, a:focus {
+  cursor: auto !important;
+}
+
+/* Respect reduced motion preference - do not hide native cursor */
+@media (prefers-reduced-motion: reduce) {
+  html.custom-cursor-enabled, body.custom-cursor-enabled { cursor: auto; }
+  .custom-cursor { display: none; }
+}
+
+
 /* === LOGO & PANEL BASE STRUCTURE === */
 .tiny-logo {
   position: fixed;
@@ -742,7 +805,7 @@ body.ready .logo-fixed {
 .nav-widget {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
@@ -1172,6 +1235,21 @@ main, section, .hero, .section {
 .watermark {
   z-index: 0 !important;
   opacity: 0.05 !important;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  align-items: center;
+  justify-items: center;
+  margin: 20px 0;
+}
+
+.certifications-grid img {
+  width: 100%;
+  max-width: 700px; /* adjust image size */
+  height: auto;
 }
 
 /* === WARM WAVE EFFECT — TOP SECTION === */

@@ -27,19 +27,29 @@
     <img src="img/logoava2ifinal.png" alt="AVA2i">
   </div>
 
+  <!-- LOGO DE FOND TEST ! -->
+
+
+
+
   <!-- LOGO DE FOND -->
   <div class="watermark" aria-hidden="true"></div>
 
+  <!-- Custom cursor -->
+<div class="custom-cursor" aria-hidden="true">
+  <div class="cursor-ring"></div>
+  <div class="cursor-dot"></div>
+</div>
+
   <!-- WIDGET LATÉRAL -->
   <div class="widget-panel">
-    <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <div class="logo-container" id="scrollTopBtn">
       <span class="logo-text">AVA2i</span>
     </div>
     <div class="nav-widget">
       <a href="#vision">Vision</a>
       <a href="#clients">Clients</a>
       <a href="#partenairesship">Partenaires</a>
-      <a href="#partenaires">Stack</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -49,7 +59,6 @@
         <h1 class="headline">Imaginer la <span>DATA</span> autrement</h1>
         <p class="sub">Ingénierie & Innovation — Cloud • Data • IA</p>
     </section>
-
     <!-- === CAROUSEL WIDGET === -->
     <section class="carousel-section reveal" id="vision">
         <div class="carousel-widget">
@@ -224,25 +233,6 @@
               <img src="img/Veolia.png" alt="Veolia">
             </div>
           </section>
-          
-    <section id="partenaires" class="partenaires-section reveal">
-        <h3 class="reveal tricolor-text" style="font-size:2.2rem; margin-bottom:8px;">
-            Notre Stack Data, IA & Cloud
-        </h3>
-        <p class="reveal" style="color:var(--muted);">Des collaborations emblématiques de l’innovation Cloud & Data.</p>
-      <div class="partners">
-        <a href="snowflakepage.html" class="partner-card snow reveal" style="text-decoration:none;">
-          <span>Snowflake</span>
-        </a>
-        <a href="databrickspage.html" class="partner-card snow reveal" style="text-decoration:none;">
-          <span>Databricks</span>
-        </a>
-        <a href="cloudpage.html" class="partner-card snow reveal" style="text-decoration:none;">
-          <span>Cloud</span>
-        </a>
-      </div>
-    </section>
-
 
         <section id="partenairesship" class="partenairesship-section reveal">
         <h3 class="reveal tricolor-text" style="font-size:2.2rem; margin-bottom:8px;">
@@ -250,8 +240,11 @@
         </h3>
         <p class="reveal" style="color:var(--muted);">Un écosystème de partenaires qui booste nos ambitions.</p>
       <div class="partners">
-        <a href="databrickspartenaires.html" class="partner-card snow reveal" style="text-decoration:none;">
+        <a href="databrickspage.html" class="partner-card snow reveal" style="text-decoration:none;">
           <span>Databricks</span>
+        </a>
+        <a href="snowflakepage.html" class="partner-card snow reveal" style="text-decoration:none;">
+          <span>Snowflake</span>
         </a>
       </div>
     </section>
@@ -417,6 +410,14 @@
     //   document.documentElement.style.setProperty("--wy", `${y}%`);
     // });
   </script>
+    <script>
+      document.getElementById("scrollTopBtn").addEventListener("click", () => {
+        document.documentElement.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+    </script>
 </body>
 </html>
 <!-- Website built by Clément Biteau - 2025 -->
