@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.5/build/spline-viewer.js"></script>
-  <spline-viewer url="https://prod.spline.design/DcM7Bikvzq2AzMRW/scene.splinecode"></spline-viewer>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/favicon-32.png?v=2">
@@ -13,28 +11,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="ambient-waves">
-    <div class="wave-set wave-purple"></div>
-    <div class="wave-set wave-blue"></div>
-    <div class="wave-set wave-cyan"></div>
-  </div>
-  
-  <!-- SPLASH SCREEN -->
-  <div class="intro-screen">
-    <img src="img/logoava2ifinal.png" alt="AVA2i Logo">
-    <span>AVA2i</span>
-  </div>
 
-  <!-- FIXED LOGO TOP LEFT -->
-  <div class="logo-fixed" onclick="location.reload()">
+    <div class="logo-fixed" onclick="window.location.href='index'">
     <img src="img/logoava2ifinal.png" alt="AVA2i">
   </div>
+<div class="logo-right">
+  </div>
 
-  <!-- Custom cursor -->
-<div class="custom-cursor" aria-hidden="true">
-  <div class="cursor-ring"></div>
-  <div class="cursor-dot"></div>
+    <!-- SPLASH SCREEN -->
+  <div class="intro-screen">
+    <img src="img/logoava2ifinal.png" alt="AVA2i Logo">
+  </div>
+<div id="main-spline">
+  <spline-viewer url="https://prod.spline.design/DcM7Bikvzq2AzMRW/scene.splinecode"></spline-viewer>
 </div>
+<main>
+    
+    <section class="hero">
+        <h1 class="headline">Imaginer la <span>DATA</span> autrement</h1>
+        <p class="sub">Ingénierie & Innovation — Cloud • Data • IA</p>
+    </section>
 
   <!-- WIDGET LATÉRAL -->
   <div class="widget-panel">
@@ -45,11 +41,10 @@
       <a href="#vision">Vision</a>
       <a href="#clients">Clients</a>
       <a href="#partenairesship">Partenaires</a>
+      <a href="#gazette">Actualité</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
-
-  <main>
 
     <!-- === CAROUSEL WIDGET === -->
     <section class="carousel-section reveal" id="vision">
@@ -240,15 +235,27 @@
         <a href="snowflakepage" class="partner-card snow reveal" style="text-decoration:none;">
           <span>Snowflake</span>
         </a>
-            <a href="dbtpage" class="partner-card snow reveal" style="text-decoration:none;">
-          <span>Dbt</span>
-        </a>
-        </a>
             <a href="salesforcepage" class="partner-card snow reveal" style="text-decoration:none;">
           <span>Salesforce</span>
         </a>
       </div>
     </section>
+
+  
+
+           <section id="gazette" class="gazette-section reveal">
+        <h3 class="reveal tricolor-text" style="font-size:2.2rem; margin-bottom:8px;">
+            ACTUALITÉ 
+        </h3>
+        <p class="reveal" style="color:var(--muted);">Fil d'actualité de la semaine dans la TECH !</p>
+      <div class="gazette">
+        <a href="gazette" class="partner-card snow reveal" style="text-decoration:none;">
+          <span>NOUVEAU</span>
+        </a>
+      </div>
+    </section>
+
+  
 
     <section id="contact">
         <div class="widget reveal" style="text-align:center;">
@@ -291,6 +298,12 @@
       <p>© 2025 — AVA2i • Ingénierie & Innovation</p>
     </footer>
   </main>
+  <!-- PARTENAIRES SPLASH -->
+  <div id="partners-splash" class="partners-splash">
+    <div class="splash-content">
+      <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.6/build/spline-viewer.js"></script>
+    </div>
+  </div>
 
   <script>
     // Wait for splash to end before showing main content
@@ -309,7 +322,13 @@
 
     // === Smooth scroll for side navigation (robust) ===
     document.querySelectorAll('.nav-widget a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
+      link.addEventListener('click', e => {
+
+        // ⛔ If it's PARTENAIRES, do NOT run smooth scroll here
+        if (link.getAttribute('href') === "#partenairesship") return;
+
+        if (link.getAttribute('href') === "#gazette") return;
+        // Otherwise: normal behavior
         e.preventDefault();
         const target = document.querySelector(link.getAttribute('href'));
         if (!target) return;
@@ -317,11 +336,11 @@
         const go = () => target.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
         if (!document.body.classList.contains('ready')) {
-        setTimeout(go, 2000);
+          setTimeout(go, 2000);
         } else {
-        go();
+          go();
         }
-    });
+      });
     });
 
     function scrollToSection(target) {
@@ -358,7 +377,6 @@
       carousel.scrollLeft += delta * baseSpeed;
     }, { passive: false });
   }
-
 
     document.querySelectorAll('.carousel-card').forEach(card => {
     card.addEventListener('mousemove', e => {
@@ -433,6 +451,34 @@
           behavior: "smooth"
         });
       });
+    // === PARTENAIRES SPLASH SEQUENCE ===
+    document.querySelectorAll('a[href="#partenairesship"]').forEach(link => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const splash = document.getElementById("partners-splash");
+
+        // Show Spline splash
+        splash.classList.add("active");
+
+        // Keep it for 3s, then fade out over 1s
+        setTimeout(() => {
+          splash.classList.add("fade-out");
+
+          setTimeout(() => {
+            // Hide it completely after fade
+            splash.classList.remove("active", "fade-out");
+
+            // Now scroll smoothly to the section
+            document.querySelector("#partenairesship").scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          }, 1000);
+        }, 3000);
+      });
+    });
+
     </script>
 </body>
 </html>
