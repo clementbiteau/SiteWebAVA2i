@@ -19,6 +19,7 @@
   </div>
 
     <!-- SPLASH SCREEN -->
+
   <div class="intro-screen">
     <img src="img/logoava2ifinal.png" alt="AVA2i Logo">
   </div>
@@ -35,7 +36,6 @@
   <!-- WIDGET LATÉRAL -->
   <div class="widget-panel">
     <div class="logo-container" id="scrollTopBtn">
-      <span class="logo-text">AVA2i</span>
     </div>
     <div class="nav-widget">
       <a href="#vision">Vision</a>
@@ -276,7 +276,6 @@
               <h4>Emails</h4>
               <p>
                 <strong>Général</strong><br>
-                <a href="mailto:admin@ava2i.com">admin@ava2i.com</a>
                 <a href="mailto:contact@ava2i.com">contact@ava2i.com</a><br><br>
                 <strong>Partner Lead</strong><br>
                 <a href="mailto:clement.biteau@ava2i.com">clement.biteau@ava2i.com</a>
@@ -480,6 +479,25 @@
     });
 
     </script>
+
+<!-- Mobile Floating Menu -->
+<div class="mobile-fab" onclick="toggleMobileMenu()">
+  <img src="img/logoava2ifinal.png" alt="AVA2i">
+</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#vision">Vision</a>
+  <a href="#clients">Clients</a>
+  <a href="#partenaires">Partenaires</a>
+  <a href="gazette.html">Actualité</a>
+  <a href="#contact">Contact</a>
+</div>
+<script>
+function toggleMobileMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+}
+</script>
+
 </body>
 </html>
-<!-- Website built by Clément Biteau - 2025 -->
+<!-- Website built by Clément Biteau / Yacine Farhi 2025 -->
